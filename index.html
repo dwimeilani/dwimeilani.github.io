@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dwi Meilani Mardyanti — Junior Web Developer</title>
+    <meta name="description" content="Portofolio Dwi Meilani Mardyanti, mahasiswa Ilmu Komputer dan Junior Web Developer dengan pengalaman Laravel, PHP, MySQL, dan React Native." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --border: #1f1f2e;
+        --text: #e8e8f0;
+        --muted: #8b8b9e;
+        --accent: #ec4899;
+        --accent-2: #8b5cf6;
+        --accent-3: #22d3ee;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* NAVBAR */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(10, 10, 15, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav .logo {
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: -0.5px;
+      }
+      nav .logo span {
+        color: var(--accent);
+      }
+      nav ul {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      nav a:hover {
+        color: var(--text);
+      }
+      nav .cta-btn {
+        background: var(--accent);
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      nav .cta-btn:hover {
+        background: #db2777;
+        color: #fff;
+      }
+
+      /* HERO */
+      .hero {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 100px 40px 80px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 60px;
+        align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(236, 72, 153, 0.1);
+        border: 1px solid rgba(236, 72, 153, 0.3);
+        color: #f9a8d4;
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+      .hero-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #22c55e;
+        box-shadow: 0 0 8px #22c55e;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        margin-bottom: 20px;
+      }
+      .hero h1 .gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p.lead {
+        font-size: 1.15rem;
+        color: var(--muted);
+        max-width: 560px;
+        margin-bottom: 36px;
+      }
+      .hero p.lead strong {
+        color: var(--text);
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+        padding: 14px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.3);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(236, 72, 153, 0.5);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: var(--text);
+        padding: 14px 28px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        font-weight: 600;
+        transition: border-color 0.2s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--accent);
+      }
+
+      .hero-photo {
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        border: 4px solid var(--surface);
+        box-shadow: 0 20px 60px rgba(236, 72, 153, 0.3);
+      }
+
+      /* STATS */
+      .stats {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 40px 80px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 24px;
+        text-align: center;
+      }
+      .stat .num {
+        font-size: 2rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .stat .label {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-top: 6px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* SECTION */
+      section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 80px 40px;
+      }
+      .section-label {
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+      }
+      .section-sub {
+        color: var(--muted);
+        max-width: 600px;
+        margin-bottom: 48px;
+      }
+
+      /* PROJECTS */
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .project {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      .project:hover {
+        border-color: var(--accent);
+        transform: translateY(-4px);
+      }
+      .project-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--accent-3);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .project h3 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+      .project p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+      .project-features {
+        list-style: none;
+        margin-bottom: 20px;
+      }
+      .project-features li {
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 4px 0 4px 20px;
+        position: relative;
+      }
+      .project-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-3);
+        font-weight: 700;
+      }
+      .project-tools {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .project-tools span {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+        background: rgba(236, 72, 153, 0.1);
+        border: 1px solid rgba(236, 72, 153, 0.2);
+        border-radius: 6px;
+        color: #f9a8d4;
+      }
+
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .skill-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px;
+      }
+      .skill-card h4 {
+        font-size: 1.05rem;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+      .skill-card ul {
+        list-style: none;
+      }
+      .skill-card li {
+        color: var(--muted);
+        font-size: 0.9rem;
+        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .skill-card li::before {
+        content: "▸";
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* EXPERIENCE */
+      .timeline {
+        position: relative;
+        padding-left: 32px;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: var(--border);
+      }
+      .timeline-item {
+        position: relative;
+        padding-bottom: 40px;
+      }
+      .timeline-item:last-child {
+        padding-bottom: 0;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -32px;
+        top: 6px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 3px solid var(--accent);
+      }
+      .timeline-item .period {
+        font-size: 0.8rem;
+        color: var(--accent);
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .timeline-item h4 {
+        font-size: 1.15rem;
+        margin: 6px 0 4px;
+        font-weight: 700;
+      }
+      .timeline-item .company {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+      }
+      .timeline-item ul {
+        color: var(--muted);
+        font-size: 0.95rem;
+        padding-left: 20px;
+      }
+      .timeline-item ul li {
+        margin-bottom: 4px;
+      }
+
+      /* CONTACT */
+      .contact-box {
+        background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.08));
+        border: 1px solid rgba(236, 72, 153, 0.3);
+        border-radius: 24px;
+        padding: 64px 40px;
+        text-align: center;
+      }
+      .contact-box h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+      }
+      .contact-box p {
+        color: var(--muted);
+        margin-bottom: 32px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .contact-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .contact-info {
+        display: flex;
+        gap: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .contact-info span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        nav {
+          padding: 14px 20px;
+        }
+        nav ul {
+          display: none;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding: 60px 24px;
+          gap: 40px;
+        }
+        .hero p.lead {
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .hero-photo {
+          width: 180px;
+          height: 180px;
+          margin: 0 auto;
+          order: -1;
+        }
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+          padding: 0 24px 60px;
+        }
+        .projects,
+        .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        section {
+          padding: 60px 24px;
+        }
+        .hero h1 {
+          font-size: 2.2rem;
+          letter-spacing: -1px;
+        }
+        .section-title {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav>
+      <div class="logo">Dwi<span>Meilani</span></div>
+      <ul>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#projects">Proyek</a></li>
+        <li><a href="#experience">Pengalaman</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+      <a href="#contact" class="cta-btn">Hire Me</a>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="hero-badge">Tersedia untuk magang & posisi junior</div>
+        <h1>Membangun aplikasi web & mobile yang fungsional dan rapi.</h1>
+        <p class="lead">
+          Saya <strong>Dwi Meilani Mardyanti</strong>, mahasiswa Ilmu Komputer semester 7 di Universitas Yatsi Madani. Fokus pada <strong>web development (Laravel & PHP)</strong> dan <strong>mobile development (React Native)</strong>,
+          dengan portofolio proyek nyata dari perkuliahan dan KKN.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">Lihat Proyek Saya →</a>
+          <a href="CV Dwi Meilani Mardyanti.pdf" class="btn-secondary">📄 Download CV</a>
+        </div>
+      </div>
+      <img src="assets/foto dwi.jpg" alt="Foto Dwi Meilani Mardyanti" class="hero-photo" />
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat">
+        <div class="num">3+</div>
+        <div class="label">Proyek IT</div>
+      </div>
+      <div class="stat">
+        <div class="num">6+</div>
+        <div class="label">Tech Stack</div>
+      </div>
+      <div class="stat">
+        <div class="num">Sem 7</div>
+        <div class="label">Ilmu Komputer</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="label">Pengalaman Organisasi</div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label">Tentang Saya</div>
+      <h2 class="section-title">Mahasiswa yang Serius Belajar & Berkontribusi</h2>
+      <p class="section-sub">
+        Saya mahasiswa Ilmu Komputer semester 7 yang aktif mengembangkan skill teknis melalui proyek kuliah dan kegiatan nyata di masyarakat. Terbiasa bekerja teliti, mengikuti arahan, dan menyelesaikan tanggung jawab dengan baik — baik
+        secara individu maupun dalam tim. Saat ini saya mencari kesempatan magang atau posisi junior di bidang web/mobile development untuk mengaplikasikan dan mengembangkan keahlian saya.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Portofolio</div>
+      <h2 class="section-title">Proyek yang Pernah Saya Kerjakan</h2>
+      <p class="section-sub">Proyek-proyek ini dikerjakan sebagai bagian dari perkuliahan dan pengembangan skill mandiri.</p>
+
+      <div class="projects">
+        <div class="project">
+          <div class="project-tag">Mobile App · React Native</div>
+          <h3>Aplikasi Laundry Sederhana</h3>
+          <p>Aplikasi mobile untuk manajemen layanan laundry, dibangun menggunakan React Native/Expo dengan Firebase sebagai backend.</p>
+          <ul class="project-features">
+            <li>Fitur input pesanan pelanggan</li>
+            <li>Manajemen status cucian (proses/selesai)</li>
+            <li>Autentikasi & database real-time via Firebase</li>
+            <li>UI mobile yang clean dan mudah digunakan</li>
+          </ul>
+          <div class="project-tools"><span>React Native</span><span>Expo</span><span>Firebase</span><span>JavaScript</span></div>
+        </div>
+
+        <div class="project">
+          <div class="project-tag">Web App · Laravel</div>
+          <h3>Sistem Informasi Sederhana</h3>
+          <p>Sistem informasi berbasis web yang dibangun menggunakan Laravel sebagai bagian dari tugas kuliah, mencakup fitur CRUD dan manajemen data.</p>
+          <ul class="project-features">
+            <li>Autentikasi user & manajemen role</li>
+            <li>Fitur CRUD (Create, Read, Update, Delete)</li>
+            <li>Database relasional dengan MySQL</li>
+            <li>Antarmuka web responsif</li>
+          </ul>
+          <div class="project-tools"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>HTML/CSS</span></div>
+        </div>
+
+        <div class="project">
+          <div class="project-tag">Digitalisasi Masyarakat · KKN</div>
+          <h3>Digitalisasi Arsip RT/RW & UMKM</h3>
+          <p>Proyek pengabdian masyarakat (KKN) untuk mendorong transformasi digital di tingkat RT/RW, meliputi arsip warga, pendataan kebutuhan, PHBS, dan dukungan promosi UMKM.</p>
+          <ul class="project-features">
+            <li>Digitalisasi arsip dan data warga RT/RW</li>
+            <li>Pendataan kebutuhan masyarakat sekitar</li>
+            <li>Program PHBS (Perilaku Hidup Bersih & Sehat)</li>
+            <li>Dukungan promosi digital untuk UMKM lokal</li>
+          </ul>
+          <div class="project-tools"><span>Microsoft Office</span><span>Canva</span><span>Dokumentasi Digital</span></div>
+        </div>
+
+        <div class="project">
+          <div class="project-tag">Operasional · Freelance</div>
+          <h3>Freelance Packer — SKI</h3>
+          <p>Pengalaman kerja freelance sebagai packer dengan tanggung jawab memastikan akurasi pesanan dan pemenuhan target harian.</p>
+          <ul class="project-features">
+            <li>Packing barang sesuai pesanan pelanggan</li>
+            <li>Quality check sebelum pengiriman</li>
+            <li>Bekerja dengan target harian yang ketat</li>
+            <li>Melatih ketelitian, kecepatan, dan konsistensi</li>
+          </ul>
+          <div class="project-tools"><span>Ketelitian</span><span>Time Management</span><span>Target-Oriented</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label">Perjalanan</div>
+      <h2 class="section-title">Pendidikan & Pengalaman</h2>
+      <p class="section-sub">Kombinasi pendidikan formal, kegiatan organisasi, dan pengalaman kerja nyata.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="period">2023 — Sekarang</div>
+          <h4>S1 Ilmu Komputer — Semester 7</h4>
+          <div class="company">Universitas Yatsi Madani (UYM)</div>
+          <ul>
+            <li>Mempelajari pemrograman web, mobile, dan basis data</li>
+            <li>Mengerjakan proyek aplikasi laundry (React Native) & sistem informasi (Laravel)</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="period">Oktober 2025 — Juli 2026</div>
+          <h4>Freelance Packer</h4>
+          <div class="company">Ski</div>
+          <ul>
+            <li>Melakukan packing dan pengecekan barang sesuai pesanan</li>
+            <li>Bekerja mengikuti target harian yang diberikan</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="period">Januari — Februari 2024</div>
+          <h4>Anggota KPPS — Pemilu 2024</h4>
+          <div class="company">Komisi Pemilihan Umum</div>
+          <ul>
+            <li>Membantu pelaksanaan pemungutan dan perhitungan suara di TPS</li>
+            <li>Bekerja sama dengan anggota KPPS lain untuk kelancaran proses</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="period">Kegiatan Akademik</div>
+          <h4>Kuliah Kerja Nyata (KKN)</h4>
+          <div class="company">Universitas Yatsi Madani</div>
+          <ul>
+            <li>Digitalisasi arsip RT/RW</li>
+            <li>Pendataan kebutuhan masyarakat & program PHBS</li>
+            <li>Dukungan promosi digitalisasi UMKM</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <div class="section-label">Keahlian</div>
+      <h2 class="section-title">Skill & Tools</h2>
+      <p class="section-sub">Kombinasi kemampuan teknis dan soft skill yang saya kembangkan melalui perkuliahan dan pengalaman.</p>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4>💻 Web Development</h4>
+          <ul>
+            <li>PHP (dasar)</li>
+            <li>Laravel</li>
+            <li>HTML & CSS</li>
+            <li>MySQL Database</li>
+            <li>AI: ChatGPT, Claude, Deepseek, GitHub Copilot</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>📱 Mobile Development</h4>
+          <ul>
+            <li>React Native</li>
+            <li>Expo</li>
+            <li>Firebase</li>
+            <li>JavaScript (dasar)</li>
+            <li>AI: ChatGPT, Claude</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h4>💡 Soft Skills & Tools</h4>
+          <ul>
+            <li>Microsoft Word, Excel, PowerPoint</li>
+            <li>Canva & Figma</li>
+            <li>AI: Canva AI, Midjourney, Notion AI</li>
+            <li>Prompt Engineering</li>
+            <li>Komunikasi & kerja sama tim</li>
+            <li>Teliti & bertanggung jawab</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-box">
+        <h2>Mari Bekerja Sama</h2>
+        <p>Saya terbuka untuk kesempatan magang, posisi junior web/mobile developer, atau proyek freelance. Silakan hubungi saya untuk diskusi lebih lanjut.</p>
+        <div class="contact-actions">
+          <a href="mailto:dwimeilanidyan@gmail.com" class="btn-primary">📧 Kirim Email</a>
+          <a href="https://wa.me/628979640840" class="btn-secondary">📱 WhatsApp</a>
+          <a href="https://www.linkedin.com/in/dwi-meilani-mardyanti-a4b5ba43a" class="btn-secondary">💼 LinkedIn</a>
+          <a href="https://github.com/dwimeilani" class="btn-secondary">🐙 GitHub</a>
+        </div>
+        <div class="contact-info">
+          <span>📍 Kota Tangerang</span>
+          <span>📧 dwimeilanidyan@gmail.com</span>
+          <span>📱 0897-9640-840</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Dwi Meilani Mardyanti · Dibuat dengan ❤️ dari Tangerang</footer>
+  </body>
+</html>
